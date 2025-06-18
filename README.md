@@ -46,6 +46,9 @@ Here's a preview of the OS running in QEMU:
 
 ![OS Preview](images/OS.png)
 
+Loading the HDD (Fat32 Partitioned):
+![OS Preview](images/FAT32_START.png)
+
 ---
 
 ## Notes
