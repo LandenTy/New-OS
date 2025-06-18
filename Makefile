@@ -1,6 +1,5 @@
 CFLAGS = -m32 -ffreestanding -Wall -Wextra
-
-OBJS = boot.o kernel.o libc/stdio.o libc/string.o libc/ata.o
+OBJS = boot.o kernel.o libc/stdio.o libc/ata.o libc/string.o fs/fat32.o
 
 all: myos.iso
 
@@ -16,6 +15,12 @@ libc/stdio.o: libc/stdio.c
 libc/string.o: libc/string.c
 	gcc $(CFLAGS) -c libc/string.c -o libc/string.o
 
+libc/ata.o: libc/ata.c libc/ata.h
+	gcc $(CFLAGS) -c libc/ata.c -o libc/ata.o
+
+fs/fat32.o: fs/fat32.c fs/fat32.h
+	gcc $(CFLAGS) -c fs/fat32.c -o fs/fat32.o
+
 kernel: $(OBJS) linker.ld
 	ld -m elf_i386 -T linker.ld -o kernel $(OBJS)
 
@@ -27,8 +32,7 @@ myos.iso: iso/boot/kernel iso/boot/grub/grub.cfg
 	grub-mkrescue -o myos.iso iso
 
 clean:
-	rm -f *.o libc/*.o kernel myos.iso
-	rm -rf iso/boot/kernel
+	rm -f *.o libc/*.o fs/*.o kernel myos.iso
 
 run: myos.iso
 	qemu-system-i386 -cdrom myos.iso -hda disk.img -boot d

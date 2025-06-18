@@ -14,4 +14,3 @@ _start:
     mov esp, 0x90000       ; set up stack
     call kmain             ; call kernel
     hlt
-
