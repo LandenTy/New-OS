@@ -57,4 +57,5 @@ Loading the HDD (Fat32 Partitioned):
 - Uses **GRUB multiboot** for ISO creation
 - Targets **BIOS** (not UEFI)
 - Kernel is optional in early stages; bootloader alone is fine
-- Supports base FAT12 floppy disks at the moment, but I'll work on implementing a way to read optical formats (ISO9660, Joliet, Rockridge, etc.) in the future
+- I've started working on implementing a FAT32 Hard Disk Support
+- Will begin working on Optical Media soon
