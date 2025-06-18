@@ -48,25 +48,6 @@ Here's a preview of the OS running in QEMU:
 
 ---
 
-## 📁 Project Structure
-
-```
-project/
-├── src/
-│   ├── bootloader.asm
-│   └── kernel.asm
-├── build/
-│   ├── bootloader.bin
-│   └── kernel.bin
-├── images/
-│   └── OS.png
-├── os.iso
-├── Makefile
-└── README.md
-```
-
----
-
 ## Notes
 
 - Uses **GRUB multiboot** for ISO creation
