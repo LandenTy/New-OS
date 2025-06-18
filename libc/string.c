@@ -8,10 +8,28 @@ int strlen(const char *s) {
     return len;
 }
 
+int memcmp(const void *s1, const void *s2, unsigned int n) {
+    const unsigned char *p1 = s1, *p2 = s2;
+    for (unsigned int i = 0; i < n; i++) {
+        if (p1[i] != p2[i]) {
+            return p1[i] - p2[i];
+        }
+    }
+    return 0;
+}
+
 void *memset(void *s, int c, unsigned int n) {
     unsigned char *p = s;
     while (n--) *p++ = (unsigned char)c;
     return s;
+}
+
+void *memcpy(void *dest, const void *src, unsigned int n) {
+    unsigned char *d = dest;
+    const unsigned char *s = src;
+    for (unsigned int i = 0; i < n; i++)
+        d[i] = s[i];
+    return dest;
 }
 
 char *itoa(int value, char *str) {

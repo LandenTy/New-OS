@@ -27,6 +27,14 @@ static inline void insw(uint16_t port, void* addr, uint32_t count) {
 void ata_wait() {
     while (inb(ATA_STATUS) & 0x80); // Wait for BSY to clear
     while (!(inb(ATA_STATUS) & 0x08)); // Wait for DRQ to set
+    int timeout = 1000000;
+    while ((inb(ATA_STATUS) & 0x80) && --timeout); // Wait for BSY to clear
+    timeout = 1000000;
+    while (!(inb(ATA_STATUS) & 0x08) && --timeout); // Wait for DRQ to set
+
+    if (timeout == 0) {
+        // Optional: signal error or print message here
+    }
 }
 
 void ata_read_sector(uint32_t lba, uint8_t* buffer) {
